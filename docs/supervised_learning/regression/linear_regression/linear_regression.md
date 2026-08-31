@@ -5,7 +5,7 @@
 - linear regression model = a function $f(x, \beta) = \beta_0 + \sum_{i=1}^{p}{\beta_i x_i}$  , where $\beta = (\beta_i)_{i \in \{0,\ldots,p\}} \in \mathbb{R}^{p+1} (parameters), \beta_0 = bias$
 - goal: find $\beta^* =argmin_{\beta\in\mathbb{R}^{p+1}} MSE(\beta)$  [see reference](#ref1)
 - vector form of problem:
-	- We note $\beta=\begin{pmatrix}\beta_0\\\vdots\\\beta_p\end{pmatrix},\quad y=\begin{pmatrix}y^{(1)}\\\vdots\\y^{(n)}\end{pmatrix},\quad X=\begin{pmatrix}1&x_1^{(1)}&\cdots&x_p^{(1)}\\\vdots&\vdots&\ddots&\vdots\\1&x_1^{(n)}&\cdots&x_p^{(n)}\end{pmatrix}$
+	- We note $$ \beta = \begin{pmatrix} \beta_0\\ \vdots\\ \beta_p \end{pmatrix}, \quad y = \begin{pmatrix} y^{(1)}\\ \vdots\\ y^{(n)} \end{pmatrix}, \quad X = \begin{pmatrix} 1 & x_1^{(1)} & \cdots & x_p^{(1)}\\ \vdots & \vdots & \ddots & \vdots\\ 1 & x_1^{(n)} & \cdots & x_p^{(n)} \end{pmatrix} $$
 	- Now we have: $y = X \beta$ and $L(\beta) = MSE(\beta) = \frac{1}{n}||y-X\beta||_2^2$  
 	- These matrix notations encode the entire dataset: whereas the previous equations described a single observation, the matrix notation simply collects all observations row by row into one matrix.
 - two ways to find it:
