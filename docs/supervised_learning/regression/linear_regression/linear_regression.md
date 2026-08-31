@@ -11,6 +11,7 @@
 - two ways to find it:
 	1. analytical/normal equation (exact solution): $\beta^{*}=(X^T X)^{-1}X^T y$
 		- proof: [[#^fc4d76]]
+		- This will give the best linear model for the given features and training dataset (under squared-error loss)
 	2. gradient descent
 		- an iterative optimization algorithm for finding $\theta$ that minimizes the loss
 		- how it works: 
@@ -18,7 +19,12 @@
 			2. choose $\alpha > 0$ (learning rate) (choosing it too large can cause divergence, and too low causes slow convergence)
 			3. update $\theta$ as follows: $\theta_{n+1} = \theta_n - \alpha \nabla_{\theta}L(\theta_n)$ 
 			4. stop after a number of iterations or until a stopping criterion is satisfied (for example, $||\nabla L(\theta_n)||_2 < \epsilon$ , for a given $\epsilon$)
-		- for $L = MSE$, we have $\nabla_{\beta} L(\beta) = \frac{2}{n} X^T (X\beta-y)$ (proof: TODO)
+		- for $L = MSE$, we have $\nabla_{\beta} L(\beta) = \frac{2}{n} X^T (X\beta-y)$
+		- proof that $\nabla_{\beta} L(\beta) = \frac{2}{n} X^T (X\beta-y)$ and that gradient descent converges to $\beta^*$: here (TODO)
+- experiments:
+	1. predict house prices with california dataset (here TODO)
+	2. mnist with linear regression (first understand how it works related to data and linearity etc) as rounding numbers (problem: if you are trying to guess 9, but you guessed 8.2 --> 8, then the prediction is wrong, but if you guessed 0, it's also wrong but much more 'WRONG' in the sense of squared error, however in normal sense, you're as wrong guessing 8 and guessing 0 ; they're both just 'wrong')
+	3. mnist with linear regression but also with classes (onehot encoded vectors for answers) (i'm not sure how this works because regression is regression, not classification)
 
 # Refs
 - $argmin_{x \in A} f(x) = \{x\in A \mid \forall a \in A, f(x) \leq f(a)\}$  (the x's which minimize f) ^381afb
