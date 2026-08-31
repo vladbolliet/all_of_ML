@@ -1,3 +1,6 @@
 /.obsidian
 /.venv
 *.ipynb
+
+/.quarto/
+**/*.quarto_ipynb
