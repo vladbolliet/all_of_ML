@@ -23,12 +23,15 @@
 			- "normalize data" = put the input features on roughly the same numerical scale / have them not too far from each other
 			- why do we normalize ? 
 				1. if one feature has huge values and the other one has tiny values, their contributions to the gradient will be wildly different, and the GD will take huge steps in a direction and small in another direction, and will therefore move in zigzags, instead of moving efficiently towards the minimum
-				2. without normalisation, $||X||^2_2$ can be very big and therefore $\alpha$ needs to be very small to attain convergence
+				2. without normalisation, $||X||^2_2$ can be very big and therefore $\alpha$ (learning rate) needs to be very small (to attain convergence) and since the learning rate is small, training is very slow
 			- normalized data always needs to be reversible to its initial state
 			- a common approach of normalisation is *standardization*: $x' = \frac{x-\mu}{\sigma}$ where $\mu$ is the mean of that feature and $\sigma$ is the standard deviation
 		- in practice, to choose $\alpha$, we normalize the data and try a range of learning rates (e.g. $10^i,i\in \{-5,...,0\}$), run GD on all of them, and see which performs best
 - experiments:
-	1. predict house prices with california dataset (here TODO)
+	1. predict house prices with california dataset ([[train_california_housing.py|here]])
+		- observations:
+			- analytical solution which I provided and sklearn's solution has the same error (modulo floating point number accuracy)
+			- in the GD linear regression, with unnormalised data, $\mu_{max} = 46614913661.89641$ which is huge, therefore $\alpha$ needs to be very small. Indeed, if I try $\alpha = 10^{-6}$ that's not even small enough, I get ValueError. Then, I tried with 10^-8 and it worked but it took like 2 minutes to reach 0.009% completion, so training would take FOREVER. 10^-7 worked too (10 times faster) but it would still take forever. It reached 0.009% in like 12 seconds which is still terrible. So I was obliged to try with normalized data. After normalisation, I used $\alpha = 10^{-3}$ and it took 5 seconds and found almost error same as analytics/sklearn solution (with a difference of $\epsilon<\alpha$, ofc)
 	2. mnist with linear regression (first understand how it works related to data and linearity etc) as rounding numbers (problem: if you are trying to guess 9, but you guessed 8.2 --> 8, then the prediction is wrong, but if you guessed 0, it's also wrong but much more 'WRONG' in the sense of squared error, however in normal sense, you're as wrong guessing 8 and guessing 0 ; they're both just 'wrong')
 	3. mnist with linear regression but also with classes (onehot encoded vectors for answers) (i'm not sure how this works because regression is regression, not classification)
 
